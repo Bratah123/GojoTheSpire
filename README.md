@@ -1,2 +1,4 @@
 # YugimonTheSpire
 A Slay the Spire Mod to recreate a childhood game
+
+Create custom anime character decks/cards
