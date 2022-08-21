@@ -75,13 +75,14 @@ public class Gojo extends CustomPlayer {
         startingDeck.add("GojoDefend");
         startingDeck.add("GojoDefend");
         startingDeck.add("GojoDefend");
+        startingDeck.add("InfniteVoid");
         return startingDeck;
     }
 
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> startingRelics = new ArrayList<>();
-        startingRelics.add("Ring of the Snake");
+        startingRelics.add("Gojo Blindfold");
         return startingRelics;
     }
 

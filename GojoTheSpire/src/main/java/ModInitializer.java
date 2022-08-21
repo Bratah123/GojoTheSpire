@@ -1,9 +1,7 @@
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
-import basemod.interfaces.EditCardsSubscriber;
-import basemod.interfaces.EditCharactersSubscriber;
-import basemod.interfaces.PostCreateStartingDeckSubscriber;
-import basemod.interfaces.PostDrawSubscriber;
+import basemod.helpers.RelicType;
+import basemod.interfaces.*;
 import color.AbstractCardEnum;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -16,13 +14,14 @@ import customcards.GojoStrike;
 import customcards.InfiniteVoid;
 import customclasses.Gojo;
 import customclasses.enums.GojoClassEnum;
+import relics.GojoBlindfold;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SpireInitializer
 public class ModInitializer implements PostDrawSubscriber,
-        EditCardsSubscriber, PostCreateStartingDeckSubscriber, EditCharactersSubscriber {
+        EditCardsSubscriber, PostCreateStartingDeckSubscriber, EditCharactersSubscriber, EditRelicsSubscriber {
 
 
     public ModInitializer() {
@@ -70,7 +69,6 @@ public class ModInitializer implements PostDrawSubscriber,
             UnlockTracker.unlockCard(card.cardID);
         }
         System.out.println("Finished adding custom cards");
-
     }
 
     @Override
@@ -80,12 +78,17 @@ public class ModInitializer implements PostDrawSubscriber,
 
     @Override
     public void receiveEditCharacters() {
-        // AbstractPlayer character, String selectButtonPath, String portraitPath, PlayerClass characterID
         System.out.println("Adding custom characters");
         BaseMod.addCharacter(new Gojo("Gojo Satoru", GojoClassEnum.GOJO),
                 "img/gojo/buttons/seeker_button.png",
                 "img/gojo/gojo-portrait-1920x1200.jpg",
                 GojoClassEnum.GOJO
                 );
+    }
+
+    @Override
+    public void receiveEditRelics() {
+        System.out.println("Adding custom relics");
+        BaseMod.addRelic(new GojoBlindfold(), RelicType.SHARED);
     }
 }
