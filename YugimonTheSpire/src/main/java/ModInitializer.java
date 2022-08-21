@@ -1,7 +1,6 @@
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.interfaces.EditCardsSubscriber;
-import basemod.interfaces.ISubscriber;
 import basemod.interfaces.PostDrawSubscriber;
 import color.AbstractCardEnum;
 import com.badlogic.gdx.graphics.Color;
@@ -47,15 +46,11 @@ public class ModInitializer implements PostDrawSubscriber, EditCardsSubscriber {
     @Override
     public void receivePostDraw(AbstractCard abstractCard) {
         System.out.println("Player just drew card: " + abstractCard.name);
-        if (abstractCard.baseDamage > 0) {
-            abstractCard.baseDamage = 99;
-            abstractCard.upgraded = true;
-        }
     }
 
     @Override
     public void receiveEditCards() {
-        System.out.println("Adding custom cards...");
+        System.out.println("Adding custom cards");
         List<CustomCard> cards = new ArrayList<>();
         cards.add(new InfiniteVoid());
 
@@ -63,6 +58,8 @@ public class ModInitializer implements PostDrawSubscriber, EditCardsSubscriber {
             BaseMod.addCard(card);
             UnlockTracker.unlockCard(card.cardID);
         }
+
+        System.out.println("Finished adding custom cards");
 
     }
 }

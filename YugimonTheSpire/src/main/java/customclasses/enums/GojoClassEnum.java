@@ -5,5 +5,5 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 
 public class GojoClassEnum {
     @SpireEnum
-    public static AbstractPlayer GOJO;
+    public static AbstractPlayer.PlayerClass GOJO;
 }

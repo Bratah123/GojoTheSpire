@@ -76,9 +76,10 @@ public class Gojo extends AbstractPlayer {
 
     @Override
     public CharSelectInfo getLoadout() {
-        return new CharSelectInfo("Gojo Satorou", "He is the greatest Sorcerer in the JJK Verse.",
-                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, HAND_SIZE,
-                GojoClassEnum.GOJO, getStartingRelics(), getStartingDeck(), false);
+        return null;
+//        new CharSelectInfo("Gojo Satorou", "He is the greatest Sorcerer in the JJK Verse.",
+//                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, HAND_SIZE,
+//                GojoClassEnum.GOJO, getStartingRelics(), getStartingDeck(), false);
     }
 
     @Override
