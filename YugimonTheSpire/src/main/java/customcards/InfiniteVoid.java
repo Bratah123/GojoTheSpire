@@ -13,7 +13,7 @@ public class InfiniteVoid extends CustomCard {
 
     public static final String ID = "InfiniteVoid";
     public static final String NAME = "Infinite Void";
-    public static final String DESCRIPTION = "Gain 1 energy everytime you play a card.\nExhaust.";
+    public static final String DESCRIPTION = "Gain 1 energy everytime you play a card.";
     public static final String IMG_PATH = "img/gojo/cards/infinite_void.png";
     public static final CardRarity RARITY = CardRarity.COMMON;
     public static final CardType CARD_TYPE = CardType.POWER;
@@ -24,16 +24,6 @@ public class InfiniteVoid extends CustomCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE,
                 AbstractCardEnum.GOJO_COLOR, RARITY, AbstractCard.CardTarget.SELF);
         this.exhaust = true;
-    }
-
-    @Override
-    public void applyPowers()  {
-        AbstractPlayer p = AbstractDungeon.player;
-        if (p.hasPower("InfiniteVoid")) {
-            super.applyPowers();
-        } else {
-            p.addPower(new InfiniteVoidPower(p, 1));
-        }
     }
 
     @Override

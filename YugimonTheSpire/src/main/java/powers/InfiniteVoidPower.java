@@ -1,5 +1,8 @@
 package powers;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class InfiniteVoidPower extends AbstractPower {
-    public static final String POWER_ID = "InfiniteVoid";
+    public static final String POWER_ID = "InfiniteVoidPower";
     public static final String NAME = "Infinite Void";
 
     public InfiniteVoidPower(AbstractCreature owner, int amount) {
@@ -20,6 +23,7 @@ public class InfiniteVoidPower extends AbstractPower {
         this.isTurnBased = false;
         this.priority = 90;
         updateDescription();
+        this.img = new Texture("img/gojo/powers/"+POWER_ID+".png");
     }
 
     @Override
