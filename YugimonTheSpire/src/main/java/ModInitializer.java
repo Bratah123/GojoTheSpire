@@ -1,16 +1,37 @@
 import basemod.BaseMod;
+import basemod.abstracts.CustomCard;
+import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.ISubscriber;
 import basemod.interfaces.PostDrawSubscriber;
+import color.AbstractCardEnum;
+import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import customcards.InfiniteVoid;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpireInitializer
-public class ModInitializer implements PostDrawSubscriber {
+public class ModInitializer implements PostDrawSubscriber, EditCardsSubscriber {
 
 
     public ModInitializer() {
         // Use this for when you subscribe to any hooks offered by BaseMod.
-        BaseMod.subscribe((ISubscriber) this);
+        BaseMod.subscribe(this);
+        BaseMod.addColor(AbstractCardEnum.GOJO_COLOR,
+                Color.PURPLE,
+                "img/gojo/512/bg_attack_purple",
+                "img/gojo/512/bg_skill_purple",
+                "img/gojo/512/bg_power_purple",
+                "img/gojo/512/card_purple_small_orb",
+                "img/gojo/1024/bg_attack_purple",
+                "img/gojo/1024/bg_skill_purple",
+                "img/gojo/1024/bg_power_purple",
+                "img/gojo/1024/card_purple_orb",
+                "img/gojo/512/card_purple_orb"
+                );
     }
 
     //Used by @SpireInitializer
@@ -26,6 +47,22 @@ public class ModInitializer implements PostDrawSubscriber {
     @Override
     public void receivePostDraw(AbstractCard abstractCard) {
         System.out.println("Player just drew card: " + abstractCard.name);
-        abstractCard.damage = 99;
+        if (abstractCard.baseDamage > 0) {
+            abstractCard.baseDamage = 99;
+            abstractCard.upgraded = true;
+        }
+    }
+
+    @Override
+    public void receiveEditCards() {
+        System.out.println("Adding custom cards...");
+        List<CustomCard> cards = new ArrayList<>();
+        cards.add(new InfiniteVoid());
+
+        for (CustomCard card : cards) {
+            BaseMod.addCard(card);
+            UnlockTracker.unlockCard(card.cardID);
+        }
+
     }
 }
