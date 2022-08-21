@@ -62,14 +62,13 @@ public class ModInitializer implements PostDrawSubscriber,
             BaseMod.addCard(card);
             UnlockTracker.unlockCard(card.cardID);
         }
-
+        BaseMod.removeCard("Strike_G", AbstractCard.CardColor.GREEN);
         System.out.println("Finished adding custom cards");
 
     }
 
     @Override
     public void receivePostCreateStartingDeck(AbstractPlayer.PlayerClass playerClass, CardGroup cardGroup) {
-        System.out.println("Added an Infinite Void card into random spot in deck.");
-        cardGroup.addToRandomSpot(new InfiniteVoid());
+        System.out.println("#receivePostCreateStartingDeck.");
     }
 }

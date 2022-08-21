@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <copy file="target/Yugimon.jar" tofile="../_ModTheSpire/mods/YugimonTheSpire.jar"/>
+  <copy file="target/Gojo.jar" tofile="../_ModTheSpire/mods/GojoTheSpire.jar"/>
 </target>
 </project>

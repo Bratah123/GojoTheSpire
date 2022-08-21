@@ -1,7 +1,6 @@
 package customcards;
 
 import basemod.abstracts.CustomCard;
-import color.AbstractCardEnum;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,16 +12,16 @@ public class InfiniteVoid extends CustomCard {
 
     public static final String ID = "InfiniteVoid";
     public static final String NAME = "Infinite Void";
-    public static final String DESCRIPTION = "Gain 1 energy everytime you play a card.";
+    public static final String DESCRIPTION = "Gain 1 energy everytime you play a card. Every skill gains 99 additional cost.";
     public static final String IMG_PATH = "img/gojo/cards/infinite_void.png";
-    public static final CardRarity RARITY = CardRarity.COMMON;
+    public static final CardRarity RARITY = CardRarity.BASIC;
     public static final CardType CARD_TYPE = CardType.POWER;
     private static final int COST = 3;
     private static final int UPGRADE_COST = 2;
 
     public InfiniteVoid() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE,
-                AbstractCardEnum.GOJO_COLOR, RARITY, AbstractCard.CardTarget.SELF);
+                AbstractCard.CardColor.GREEN, RARITY, AbstractCard.CardTarget.SELF);
         this.exhaust = true;
     }
 
@@ -44,6 +43,22 @@ public class InfiniteVoid extends CustomCard {
         AbstractDungeon.actionManager.addToBottom(
                 new ApplyPowerAction(p, p,
                         new InfiniteVoidPower(p, 1), 1));
+        // Make every skill card unplayable
+        for (AbstractCard card : AbstractDungeon.player.hand.group) {
+            if (card.type == CardType.SKILL) {
+                card.modifyCostForCombat(99);
+            }
+        }
+        for (AbstractCard card : AbstractDungeon.player.drawPile.group) {
+            if (card.type == CardType.SKILL) {
+                card.modifyCostForCombat(99);
+            }
+        }
+        for (AbstractCard card : AbstractDungeon.player.discardPile.group) {
+            if (card.type == CardType.SKILL) {
+                card.modifyCostForCombat(99);
+            }
+        }
     }
 
 }
