@@ -14,7 +14,7 @@ public class InfiniteVoid extends CustomCard {
     public static final String NAME = "Infinite Void";
     public static final String DESCRIPTION = "Gain 1 energy everytime you play a card. Every skill gains 99 additional cost.";
     public static final String IMG_PATH = "img/gojo/cards/infinite_void.png";
-    public static final CardRarity RARITY = CardRarity.BASIC;
+    public static final CardRarity RARITY = CardRarity.RARE;
     public static final CardType CARD_TYPE = CardType.POWER;
     private static final int COST = 3;
     private static final int UPGRADE_COST = 2;
@@ -42,7 +42,7 @@ public class InfiniteVoid extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(
                 new ApplyPowerAction(p, p,
-                        new InfiniteVoidPower(p, 1), 1));
+                        new InfiniteVoidPower(p), 1));
         // Make every skill card unplayable
         for (AbstractCard card : AbstractDungeon.player.hand.group) {
             if (card.type == CardType.SKILL) {

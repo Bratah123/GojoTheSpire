@@ -12,21 +12,16 @@ public class InfiniteVoidPower extends AbstractPower {
     public static final String POWER_ID = "InfiniteVoidPower";
     public static final String NAME = "Infinite Void";
 
-    public InfiniteVoidPower(AbstractCreature owner, int amount) {
+    public InfiniteVoidPower(AbstractCreature owner) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.amount = amount;
         this.type = AbstractPower.PowerType.BUFF;
         this.isTurnBased = false;
         this.priority = 90;
-        updateDescription();
-        this.img = new Texture("img/gojo/powers/"+POWER_ID+".png");
-    }
 
-    @Override
-    public void updateDescription() {
-        this.description = "Gain " + this.amount + " energy everytime you play a card.";
+        // The image that shows up at bottom of character when used
+        this.img = new Texture("img/gojo/powers/"+POWER_ID+".png");
     }
 
     @Override

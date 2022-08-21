@@ -1,52 +1,60 @@
 package customclasses;
 
+import basemod.abstracts.CustomPlayer;
+import basemod.animations.SpriterAnimation;
+import color.AbstractCardEnum;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.Prefs;
-import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
-import com.megacrit.cardcrawl.screens.stats.CharStat;
-import customclasses.enums.GojoClassEnum;
+import customcards.InfiniteVoid;
 
 import java.util.ArrayList;
 
-public class Gojo extends AbstractPlayer {
+public class Gojo extends CustomPlayer {
     public static final int ENERGY_PER_TURN = 8; // how much energy you get every turn
-    public static final String MY_CHARACTER_SHOULDER_2 = "img/char/shoulder2.png"; // campfire pose
-    public static final String MY_CHARACTER_SHOULDER_1 = "img/char/shoulder1.png"; // another campfire pose
-    public static final String MY_CHARACTER_CORPSE = "img/char/corpse.png"; // dead corpse
-    public static final String MY_CHARACTER_SKELETON_ATLAS = "img/char/skeleton.atlas"; // spine animation atlas
-    public static final String MY_CHARACTER_SKELETON_JSON = "img/char/skeleton.json"; // spine animation json
-    public static final int STARTING_HP = 75;
-    public static final int MAX_HP = 75;
+    public static final String MY_CHARACTER_SHOULDER_2 = "img/gojo/char/shoulder2.png"; // campfire pose
+    public static final String MY_CHARACTER_SHOULDER_1 = "img/gojo/char/shoulder.png"; // another campfire pose
+    public static final String MY_CHARACTER_CORPSE = "img/gojo/char/corpse.png"; // dead corpse
+    public static final int STARTING_HP = 40;
+    public static final int MAX_HP = 40;
     public static final int STARTING_GOLD = 99;
     public static final int HAND_SIZE = 2;
     private static final int ORB_SLOTS = 8;
+    public static final String[] ORB_TEXTURES = {
+            "img/gojo/char/orb/layer1.png",
+            "img/gojo/char/orb/layer2.png",
+            "img/gojo/char/orb/layer3.png",
+            "img/gojo/char/orb/layer4.png",
+            "img/gojo/char/orb/layer5.png",
+            "img/gojo/char/orb/layer6.png",
+            "img/gojo/char/orb/layer1d.png",
+            "img/gojo/char/orb/layer2d.png",
+            "img/gojo/char/orb/layer3d.png",
+            "img/gojo/char/orb/layer4d.png",
+            "img/gojo/char/orb/layer5d.png"
+    };
+    public static final Color PURPLE = CardHelper.getColor(139.0f, 0.0f, 139.0f);;
 
     public Gojo(String name, PlayerClass chosenClass) {
-        super(name, chosenClass);
-        this.dialogX = (this.drawX + 0.0F * Settings.scale); // set location for text bubbles
-        this.dialogY = (this.drawY + 220.0F * Settings.scale); // you can just copy these values
-
+        super(name,
+                chosenClass,
+                ORB_TEXTURES,
+                "img/gojo/char/orb/vfx.png",
+                new SpriterAnimation("img/gojo/char/animation.scml")
+        );
         initializeClass(null, MY_CHARACTER_SHOULDER_2, // required call to load textures and setup energy/loadout
                 MY_CHARACTER_SHOULDER_1,
                 MY_CHARACTER_CORPSE,
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN));
-
-        loadAnimation(MY_CHARACTER_SKELETON_ATLAS, MY_CHARACTER_SKELETON_JSON, 1.0F); // if you're using modified versions of base game animations or made animations in spine make sure to include this bit and the following lines
-
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
     }
 
     @Override
@@ -57,194 +65,98 @@ public class Gojo extends AbstractPlayer {
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> startingDeck = new ArrayList<>();
-        startingDeck.add("MyCard0");
-        startingDeck.add("MyCard0");
-        startingDeck.add("MyCard0");
-        startingDeck.add("MyCard0");
-        startingDeck.add("MyCard1");
-        startingDeck.add("MyCard1");
-        startingDeck.add("MyCard1");
-        startingDeck.add("MyCard1");
-        startingDeck.add("MyCard2");
+        startingDeck.add("GojoStrike");
+        startingDeck.add("GojoStrike");
+        startingDeck.add("GojoStrike");
+        startingDeck.add("GojoStrike");
+        startingDeck.add("GojoStrike");
+        startingDeck.add("GojoDefend");
+        startingDeck.add("GojoDefend");
+        startingDeck.add("GojoDefend");
+        startingDeck.add("GojoDefend");
+        startingDeck.add("GojoDefend");
         return startingDeck;
     }
 
     @Override
     public ArrayList<String> getStartingRelics() {
-        return new ArrayList<>();
+        ArrayList<String> startingRelics = new ArrayList<>();
+        startingRelics.add("Ring of the Snake");
+        return startingRelics;
     }
 
     @Override
     public CharSelectInfo getLoadout() {
-        return null;
-//        new CharSelectInfo("Gojo Satorou", "He is the greatest Sorcerer in the JJK Verse.",
-//                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, HAND_SIZE,
-//                GojoClassEnum.GOJO, getStartingRelics(), getStartingDeck(), false);
+        return new CharSelectInfo("Gojo Satorou", "He is the strongest Sorcerer in the JJK Verse.",
+                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, HAND_SIZE,
+                this, getStartingRelics(), getStartingDeck(), false);
     }
 
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return null;
+        return "Gojo Satoru";
     }
 
     @Override
     public AbstractCard.CardColor getCardColor() {
-        return null;
+        return AbstractCardEnum.GOJO_COLOR;
     }
 
     @Override
     public Color getCardRenderColor() {
-        return null;
-    }
-
-    @Override
-    public String getAchievementKey() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> arrayList) {
-        return null;
+        return PURPLE;
     }
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        return null;
+        return new InfiniteVoid();
     }
 
     @Override
     public Color getCardTrailColor() {
-        return null;
-    }
-
-    @Override
-    public String getLeaderboardCharacterName() {
-        return null;
-    }
-
-    @Override
-    public Texture getEnergyImage() {
-        return null;
+        return PURPLE;
     }
 
     @Override
     public int getAscensionMaxHPLoss() {
-        return 0;
+        return 5;
     }
 
     @Override
     public BitmapFont getEnergyNumFont() {
-        return null;
-    }
-
-    @Override
-    public void renderOrb(SpriteBatch spriteBatch, boolean b, float v, float v1) {
-
-    }
-
-    @Override
-    public void updateOrb(int i) {
-
-    }
-
-    @Override
-    public Prefs getPrefs() {
-        return null;
-    }
-
-    @Override
-    public void loadPrefs() {
-
-    }
-
-    @Override
-    public CharStat getCharStat() {
-        return null;
-    }
-
-    @Override
-    public int getUnlockedCardCount() {
-        return 0;
-    }
-
-    @Override
-    public int getSeenCardCount() {
-        return 0;
-    }
-
-    @Override
-    public int getCardCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean saveFileExists() {
-        return false;
-    }
-
-    @Override
-    public String getWinStreakKey() {
-        return null;
-    }
-
-    @Override
-    public String getLeaderboardWinStreakKey() {
-        return null;
-    }
-
-    @Override
-    public void renderStatScreen(SpriteBatch spriteBatch, float v, float v1) {
-
+        return FontHelper.energyNumFontPurple;
     }
 
     @Override
     public void doCharSelectScreenSelectEffect() {
-
+        CardCrawlGame.sound.playA("UNLOCK_PING", MathUtils.random(-0.2F, 0.2F));
+        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
+                false);
     }
 
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return null;
-    }
-
-    @Override
-    public Texture getCustomModeCharacterButtonImage() {
-        return null;
-    }
-
-    @Override
-    public CharacterStrings getCharacterString() {
-        return null;
+        return "UNLOCK_PING";
     }
 
     @Override
     public String getLocalizedCharacterName() {
-        return null;
-    }
-
-    @Override
-    public void refreshCharStat() {
-
+        return "Gojo Satoru";
     }
 
     @Override
     public AbstractPlayer newInstance() {
-        return null;
-    }
-
-    @Override
-    public TextureAtlas.AtlasRegion getOrb() {
-        return null;
+        return new Gojo(name, chosenClass);
     }
 
     @Override
     public String getSpireHeartText() {
-        return null;
+        return "Even Gojo couldn't kill the heart...";
     }
 
     @Override
     public Color getSlashAttackColor() {
-        return null;
+        return PURPLE;
     }
 
     @Override
@@ -254,6 +166,6 @@ public class Gojo extends AbstractPlayer {
 
     @Override
     public String getVampireText() {
-        return null;
+        return "Vampire Gojo mmmm tasty.";
     }
 }
