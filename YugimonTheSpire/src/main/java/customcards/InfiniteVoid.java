@@ -13,7 +13,7 @@ public class InfiniteVoid extends CustomCard {
 
     public static final String ID = "InfiniteVoid";
     public static final String NAME = "Infinite Void";
-    public static final String DESCRIPTION = "Gain !M! energy everytime you play a card.\nExhaust.";
+    public static final String DESCRIPTION = "Gain 1 energy everytime you play a card.\nExhaust.";
     public static final String IMG_PATH = "img/gojo/cards/infinite_void.png";
     public static final CardRarity RARITY = CardRarity.COMMON;
     public static final CardType CARD_TYPE = CardType.POWER;

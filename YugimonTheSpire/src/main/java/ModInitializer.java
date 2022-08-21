@@ -1,11 +1,14 @@
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.interfaces.EditCardsSubscriber;
+import basemod.interfaces.PostCreateStartingDeckSubscriber;
 import basemod.interfaces.PostDrawSubscriber;
 import color.AbstractCardEnum;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import customcards.InfiniteVoid;
 
@@ -13,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpireInitializer
-public class ModInitializer implements PostDrawSubscriber, EditCardsSubscriber {
+public class ModInitializer implements PostDrawSubscriber,
+        EditCardsSubscriber, PostCreateStartingDeckSubscriber {
 
 
     public ModInitializer() {
@@ -21,15 +25,15 @@ public class ModInitializer implements PostDrawSubscriber, EditCardsSubscriber {
         BaseMod.subscribe(this);
         BaseMod.addColor(AbstractCardEnum.GOJO_COLOR,
                 Color.PURPLE,
-                "img/gojo/512/bg_attack_purple",
-                "img/gojo/512/bg_skill_purple",
-                "img/gojo/512/bg_power_purple",
-                "img/gojo/512/card_purple_small_orb",
-                "img/gojo/1024/bg_attack_purple",
-                "img/gojo/1024/bg_skill_purple",
-                "img/gojo/1024/bg_power_purple",
-                "img/gojo/1024/card_purple_orb",
-                "img/gojo/512/card_purple_orb"
+                "img/gojo/background/512/bg_attack_purple.png",
+                "img/gojo/background/512/bg_skill_purple.png",
+                "img/gojo/background/512/bg_power_purple.png",
+                "img/gojo/background/512/card_purple_small_orb.png",
+                "img/gojo/background/1024/bg_attack_purple.png",
+                "img/gojo/background/1024/bg_skill_purple.png",
+                "img/gojo/background/1024/bg_power_purple.png",
+                "img/gojo/background/1024/card_purple_orb.png",
+                "img/gojo/background/512/card_purple_orb.png"
                 );
     }
 
@@ -61,5 +65,11 @@ public class ModInitializer implements PostDrawSubscriber, EditCardsSubscriber {
 
         System.out.println("Finished adding custom cards");
 
+    }
+
+    @Override
+    public void receivePostCreateStartingDeck(AbstractPlayer.PlayerClass playerClass, CardGroup cardGroup) {
+        System.out.println("Added an Infinite Void card into random spot in deck.");
+        cardGroup.addToRandomSpot(new InfiniteVoid());
     }
 }
