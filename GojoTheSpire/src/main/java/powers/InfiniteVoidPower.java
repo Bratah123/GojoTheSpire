@@ -19,6 +19,7 @@ public class InfiniteVoidPower extends AbstractPower {
         this.type = AbstractPower.PowerType.BUFF;
         this.isTurnBased = false;
         this.priority = 90;
+        this.description = "Gain [G] everytime a card is played.";
 
         // The image that shows up at bottom of character when used
         this.img = new Texture("img/gojo/powers/"+POWER_ID+".png");
@@ -28,6 +29,6 @@ public class InfiniteVoidPower extends AbstractPower {
     public void onPlayCard(AbstractCard card, AbstractMonster m) {
         super.onPlayCard(card, m);
         AbstractPlayer player = AbstractDungeon.player;
-        player.gainEnergy(this.amount);
+        player.gainEnergy(1);
     }
 }
