@@ -16,8 +16,8 @@ public class BlackVoid extends CustomCard {
 
     public static final String NAME = "Black Void";
     public static final String ID = "BlackVoid";
-    public static final String DESCRIPTION = "Exhaust 1 card and draw 4 cards.";
-    public static final String IMG_PATH = "img/gojo/cards/gojo_red_barrier.jpg";
+    public static final String DESCRIPTION = "Draw 4 cards and Exhaust 1 card.";
+    public static final String IMG_PATH = "img/gojo/cards/gojo_black_hole.png";
     public static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     public static final AbstractCard.CardType CARD_TYPE = CardType.SKILL;
     private static final int COST = 1;
@@ -49,7 +49,7 @@ public class BlackVoid extends CustomCard {
         CardCrawlGame.sound.playAV("CARD_DRAW_8", -0.12F, 0.25F);
         if (abstractPlayer.drawPile.size() < 4) {
             // reshuffle discard into deck
-            AbstractDungeon.actionManager.addToBottom(new EmptyDeckShuffleAction());
+            AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
         }
         abstractPlayer.draw(4);
     }

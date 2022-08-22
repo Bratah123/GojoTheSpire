@@ -28,6 +28,11 @@ public class GojoBlindfold extends CustomRelic {
     }
 
     @Override
+    public void atBattleStart() {
+        counter = 0;
+    }
+
+    @Override
     public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
         super.onUseCard(targetCard, useCardAction);
         counter += targetCard.costForTurn;
