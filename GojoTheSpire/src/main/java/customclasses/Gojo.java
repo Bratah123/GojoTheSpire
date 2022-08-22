@@ -75,7 +75,7 @@ public class Gojo extends CustomPlayer {
         startingDeck.add("GojoDefend");
         startingDeck.add("GojoDefend");
         startingDeck.add("GojoDefend");
-        startingDeck.add("InfniteVoid");
+        startingDeck.add("InfiniteVoid");
         return startingDeck;
     }
 
@@ -88,7 +88,7 @@ public class Gojo extends CustomPlayer {
 
     @Override
     public CharSelectInfo getLoadout() {
-        return new CharSelectInfo("Gojo Satorou", "He is the strongest Sorcerer in the JJK Verse.",
+        return new CharSelectInfo("Gojo Satoru", "He is the strongest Sorcerer in the JJK Verse.",
                 STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, HAND_SIZE,
                 this, getStartingRelics(), getStartingDeck(), false);
     }
