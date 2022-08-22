@@ -27,8 +27,8 @@ public class Gojo extends CustomPlayer {
     public static final int STARTING_HP = 40;
     public static final int MAX_HP = 40;
     public static final int STARTING_GOLD = 99;
-    public static final int HAND_SIZE = 2;
-    private static final int ORB_SLOTS = 8;
+    public static final int HAND_SIZE = 4;
+    private static final int ORB_SLOTS = 0;
     public static final String[] ORB_TEXTURES = {
             "img/gojo/char/orb/layer1.png",
             "img/gojo/char/orb/layer2.png",
@@ -59,7 +59,7 @@ public class Gojo extends CustomPlayer {
 
     @Override
     public String getPortraitImageName() {
-        return "Gojo Satorou";
+        return "Gojo Satoru";
     }
 
     @Override
@@ -76,6 +76,7 @@ public class Gojo extends CustomPlayer {
         startingDeck.add("GojoDefend");
         startingDeck.add("GojoDefend");
         startingDeck.add("InfiniteVoid");
+        startingDeck.add("BlackVoid");
         return startingDeck;
     }
 

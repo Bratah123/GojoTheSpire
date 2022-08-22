@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import customcards.BlackVoid;
 import customcards.GojoDefend;
 import customcards.GojoStrike;
 import customcards.InfiniteVoid;
@@ -64,6 +65,7 @@ public class ModInitializer implements PostDrawSubscriber,
         cards.add(new InfiniteVoid());
         cards.add(new GojoStrike());
         cards.add(new GojoDefend());
+        cards.add(new BlackVoid());
 
         for (CustomCard card : cards) {
             BaseMod.addCard(card);
@@ -81,7 +83,7 @@ public class ModInitializer implements PostDrawSubscriber,
     public void receiveEditCharacters() {
         System.out.println("Adding custom characters");
         BaseMod.addCharacter(new Gojo("Gojo Satoru", GojoClassEnum.GOJO),
-                "img/gojo/buttons/seeker_button.png",
+                "img/gojo/buttons/gojo_button.png",
                 "img/gojo/gojo-portrait-1920x1200.jpg",
                 GojoClassEnum.GOJO
                 );
