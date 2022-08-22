@@ -1,0 +1,9 @@
+{
+  "GojoBlindfold": {
+    "NAME": "Gojo Blindfold",
+    "FLAVOR": "Wear this to supress your infinite amount of energy.",
+    "DESCRIPTIONS": [
+      "Store the energy of a card you play during this combat."
+    ]
+  }
+}

@@ -82,7 +82,7 @@ public class Gojo extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> startingRelics = new ArrayList<>();
-        startingRelics.add("Gojo Blindfold");
+        startingRelics.add("GojoBlindfold");
         return startingRelics;
     }
 

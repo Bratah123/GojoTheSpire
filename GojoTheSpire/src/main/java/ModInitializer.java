@@ -1,6 +1,5 @@
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
-import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import color.AbstractCardEnum;
 import com.badlogic.gdx.graphics.Color;
@@ -8,6 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import customcards.GojoDefend;
 import customcards.GojoStrike;
@@ -21,7 +21,8 @@ import java.util.List;
 
 @SpireInitializer
 public class ModInitializer implements PostDrawSubscriber,
-        EditCardsSubscriber, PostCreateStartingDeckSubscriber, EditCharactersSubscriber, EditRelicsSubscriber {
+        EditCardsSubscriber, PostCreateStartingDeckSubscriber, EditCharactersSubscriber,
+        EditRelicsSubscriber, EditStringsSubscriber {
 
 
     public ModInitializer() {
@@ -89,6 +90,12 @@ public class ModInitializer implements PostDrawSubscriber,
     @Override
     public void receiveEditRelics() {
         System.out.println("Adding custom relics");
-        BaseMod.addRelic(new GojoBlindfold(), RelicType.SHARED);
+        BaseMod.addRelicToCustomPool(new GojoBlindfold(), AbstractCardEnum.GOJO_COLOR);
+        UnlockTracker.markRelicAsSeen("GojoBlindfold");
+    }
+
+    @Override
+    public void receiveEditStrings() {
+        BaseMod.loadCustomStringsFile(RelicStrings.class, "localization/RelicStrings.json");
     }
 }

@@ -1,6 +1,7 @@
 relics\GojoBlindfold.class
 color\LibraryTypeEnum.class
 customcards\GojoStrike.class
+constants\CardConstants.class
 customclasses\enums\GojoClassEnum.class
 customclasses\Gojo.class
 customcards\GojoDefend.class
