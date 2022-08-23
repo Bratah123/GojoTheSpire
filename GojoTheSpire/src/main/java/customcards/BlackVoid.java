@@ -38,6 +38,10 @@ public class BlackVoid extends CustomCard {
 
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
+        if (abstractPlayer.drawPile.size() < 4) {
+            // reshuffle discard into deck
+            AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
+        }
         AbstractDungeon.actionManager.addToBottom(
                 new SelectCardsInHandAction(1, "Pick one card to exhaust", (cards) -> {
                     AbstractCard card = cards.get(0);
@@ -47,10 +51,6 @@ public class BlackVoid extends CustomCard {
                 })
         );
         CardCrawlGame.sound.playAV("CARD_DRAW_8", -0.12F, 0.25F);
-        if (abstractPlayer.drawPile.size() < 4) {
-            // reshuffle discard into deck
-            AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
-        }
         abstractPlayer.draw(4);
     }
 }
