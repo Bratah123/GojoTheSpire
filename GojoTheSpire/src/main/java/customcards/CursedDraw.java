@@ -3,6 +3,7 @@ package customcards;
 import basemod.abstracts.CustomCard;
 import color.AbstractCardEnum;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
+import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.CurseOfTheBell;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -38,7 +39,9 @@ public class CursedDraw extends CustomCard {
             // reshuffle discard into deck
             AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
         }
-        abstractPlayer.drawPile.addToRandomSpot(new CurseOfTheBell());
+        AbstractCard curse = new CurseOfTheBell();
+        abstractPlayer.drawPile.addToRandomSpot(curse);
+        AbstractDungeon.actionManager.addToBottom(new AddCardToDeckAction(curse));
         CardCrawlGame.sound.playAV("CARD_DRAW_8", -0.12F, 0.25F);
         abstractPlayer.draw(4);
     }
