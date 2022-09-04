@@ -14,7 +14,7 @@ public class CursedDraw extends CustomCard {
     public static final String NAME = "Cursed Draw";
     public static final String ID = "CursedDraw";
     public static final String DESCRIPTION = "Draw 4 cards and add a curse into the deck.";
-    public static final String IMG_PATH = "img/gojo/cards/cursed_draw.png";
+    public static final String IMG_PATH = "img/gojo/cards/cursed_draw.jpg";
     public static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
     public static final AbstractCard.CardType CARD_TYPE = CardType.SKILL;
     private static final int COST = 1;
