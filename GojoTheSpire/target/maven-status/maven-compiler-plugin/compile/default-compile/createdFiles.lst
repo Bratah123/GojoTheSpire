@@ -1,3 +1,4 @@
+powers\InfinityBarrierPower.class
 relics\GojoBlindfold.class
 color\LibraryTypeEnum.class
 customcards\GojoStrike.class
@@ -7,5 +8,6 @@ customclasses\Gojo.class
 customcards\GojoDefend.class
 color\AbstractCardEnum.class
 customcards\InfiniteVoid.class
+customcards\InfinityBarrier.class
 powers\InfiniteVoidPower.class
 customcards\BlackVoid.class
