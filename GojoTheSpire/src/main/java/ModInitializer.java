@@ -65,6 +65,8 @@ public class ModInitializer implements PostDrawSubscriber,
         cards.add(new BlackVoid());
         cards.add(new InfinityBarrier());
         cards.add(new EnergyDefend());
+        cards.add(new EnergyStrike());
+        cards.add(new CursedDraw());
 
         for (CustomCard card : cards) {
             BaseMod.addCard(card);

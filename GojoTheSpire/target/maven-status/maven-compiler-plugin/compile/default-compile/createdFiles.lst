@@ -1,5 +1,6 @@
 customcards\EnergyDefend.class
 powers\InfinityBarrierPower.class
+customcards\CursedDraw.class
 customcards\EnergyStrike.class
 relics\GojoBlindfold.class
 color\LibraryTypeEnum.class
