@@ -18,7 +18,7 @@ public class GojoStrike extends CustomCard {
     public static final String IMG_PATH = "img/gojo/cards/satoru_punches_volcano.png";
     public static final CardRarity RARITY = CardRarity.BASIC;
     public static final CardType CARD_TYPE = CardType.ATTACK;
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int DAMAGE = 6;
     private static final int UPGRADED_DAMAGE = 2;
 

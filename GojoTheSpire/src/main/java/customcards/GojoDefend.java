@@ -15,7 +15,7 @@ public class GojoDefend extends CustomCard {
     public static final String IMG_PATH = "img/gojo/cards/gojo_red_barrier.jpg";
     public static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.BASIC;
     public static final AbstractCard.CardType CARD_TYPE = CardType.SKILL;
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int BLOCK = 5;
     private static final int UPGRADED_BLOCK = 3;
 

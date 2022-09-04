@@ -19,8 +19,8 @@ public class InfiniteVoid extends CustomCard {
     public static final String IMG_PATH = "img/gojo/cards/infinite_void.png";
     public static final CardRarity RARITY = CardRarity.RARE;
     public static final CardType CARD_TYPE = CardType.POWER;
-    private static final int COST = 8;
-    private static final int UPGRADE_COST = 4;
+    private static final int COST = 4;
+    private static final int UPGRADE_COST = 2;
 
     public InfiniteVoid() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, CARD_TYPE,

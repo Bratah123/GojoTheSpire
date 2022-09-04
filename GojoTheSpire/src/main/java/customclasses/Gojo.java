@@ -20,7 +20,7 @@ import customcards.InfiniteVoid;
 import java.util.ArrayList;
 
 public class Gojo extends CustomPlayer {
-    public static final int ENERGY_PER_TURN = 8; // how much energy you get every turn
+    public static final int ENERGY_PER_TURN = 4; // how much energy you get every turn
     public static final String MY_CHARACTER_SHOULDER_2 = "img/gojo/char/shoulder2.png"; // campfire pose
     public static final String MY_CHARACTER_SHOULDER_1 = "img/gojo/char/shoulder.png"; // another campfire pose
     public static final String MY_CHARACTER_CORPSE = "img/gojo/char/corpse.png"; // dead corpse
@@ -75,7 +75,6 @@ public class Gojo extends CustomPlayer {
         startingDeck.add("GojoDefend");
         startingDeck.add("GojoDefend");
         startingDeck.add("GojoDefend");
-        startingDeck.add("InfiniteVoid");
         startingDeck.add("BlackVoid");
         return startingDeck;
     }
